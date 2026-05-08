@@ -1,0 +1,36 @@
+<h2>Lista produktów</h2>
+
+<table>
+    <thead>
+        <tr>
+        <th>ID</th>
+        <th>Nazwa</th>
+        <th>Opis</th>
+        <th>Cena</th>
+        <th>Data dodania</th>
+        <th>Szczegóły</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of products">
+            <td>{{ p.id }}</td>
+            <td>{{ p.name }}</td>
+            <td>{{ p.description }}</td>
+            <td>{{ p.price | currency: 'PLN' : 'symbol' : '1.2-2' : 'pl' }}</td>
+            <td>{{ p.createdAt | date: 'dd.MM.yyyy'}}</td>
+            <td><a [routerLink]="['/products', p.id]">Szczegóły</a></td>
+        </tr>
+        <tr *ngIf="products.length === 0">
+            <td colspan="6">Brak produktów na tej stronie.</td>
+        </tr>
+    </tbody>
+</table>
+
+<div>
+    <button 
+      *ngFor="let page of totalPages"
+      [class.active]="page === currentPage"
+      (click)="setPage(page)">
+      {{ page }}
+    </button>
+</div>

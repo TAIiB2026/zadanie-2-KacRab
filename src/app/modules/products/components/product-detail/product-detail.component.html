@@ -1,0 +1,18 @@
+<div *ngIf="product; else notFound">
+    <h2>Szczegóły produktu</h2>
+    <table>
+      <tr><th>ID</th><td>{{ product.id }}</td></tr>
+      <tr><th>Nazwa</th><td>{{ product.name }}</td></tr>
+      <tr><th>Opis</th><td>{{ product.description }}</td></tr>
+      <tr><th>Cena</th><td>{{ product.price | currency:'PLN':'symbol':'1.2-2':'pl' }}</td></tr>
+      <tr><th>Data dodania</th><td>{{ product.createdAt | date:'dd MMMM yyyy' }}</td></tr>
+    </table>
+  
+    <button (click)="delete()">Usuń produkt</button>
+    <a routerLink="/products">Wróć do listy</a>
+  </div>
+  
+  <ng-template #notFound>
+    <p>Nie znaleziono produktu.</p>
+    <a routerLink="/products">Wróć do listy</a>
+  </ng-template>
